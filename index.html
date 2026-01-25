@@ -3,126 +3,353 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex" />
   <title>بيوت النحل - روابط</title>
 
   <style>
     :root{
-      --bg:#0b0f14;
-      --card:#111827;
-      --gold:#fbbf24;
-      --btn:#1f2937;
-      --btnHover:#fbbf24;
-      --text:#ffffff;
-      --muted:#9ca3af;
-      --radius:18px;
+      --bg:#070a0f;
+      --card:#0f1623;
+      --stroke:rgba(255,255,255,.10);
+      --text:#f6f7fb;
+      --muted:rgba(255,255,255,.68);
+      --gold:#f7c948;
+      --gold2:#f59e0b;
+
+      --btn1:rgba(255,255,255,.06);
+      --btn2:rgba(255,255,255,.03);
+
+      --radius:22px;
     }
 
     *{box-sizing:border-box}
 
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background: radial-gradient(circle at top, #3a2a00 0%, var(--bg) 55%);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       color:var(--text);
       min-height:100vh;
       display:flex;
       justify-content:center;
       align-items:center;
-      padding:24px;
+      padding:22px;
+
+      /* Background */
+      background:
+        radial-gradient(900px 520px at 55% 8%, rgba(245,158,11,.22) 0%, rgba(0,0,0,0) 55%),
+        radial-gradient(900px 520px at 20% 18%, rgba(247,201,72,.16) 0%, rgba(0,0,0,0) 58%),
+        radial-gradient(800px 500px at 50% 120%, rgba(10,18,32,.85) 0%, rgba(7,10,15,1) 55%),
+        var(--bg);
     }
 
     .wrap{
-      width:min(520px, 100%);
+      width:min(560px, 100%);
       text-align:center;
+      position:relative;
     }
 
+    /* Top glow line */
+    .glow{
+      height:1px;
+      width:72%;
+      margin:0 auto 16px;
+      background: linear-gradient(90deg, transparent, rgba(247,201,72,.35), transparent);
+      filter: blur(.2px);
+      opacity:.9;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(15,22,35,.92), rgba(10,14,22,.82));
+      border:1px solid var(--stroke);
+      border-radius: calc(var(--radius) + 10px);
+      padding:22px 18px 18px;
+      box-shadow:
+        0 20px 55px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Logo */
     .logo{
-      width:90px;
-      height:90px;
+      width:92px;
+      height:92px;
       border-radius:50%;
-      background: var(--gold);
+      margin: 0 auto 14px;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:32px;
-      font-weight:bold;
-      margin:0 auto 14px;
-      color:#000;
-      box-shadow:0 8px 20px rgba(0,0,0,.4);
+      overflow:hidden;
+      background: radial-gradient(circle at 30% 25%, var(--gold) 0%, var(--gold2) 65%);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:
+        0 14px 30px rgba(0,0,0,.50),
+        inset 0 1px 0 rgba(255,255,255,.18);
+    }
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    /* لو ما حطيت صورة، هذا الإيموجي يطلع */
+    .logo-fallback{
+      font-size:34px;
+      color:#111;
+      font-weight:900;
+      user-select:none;
     }
 
     h1{
       margin:0;
-      font-size:24px;
+      font-size:28px;
       font-weight:900;
+      letter-spacing:.2px;
     }
 
-    p{
-      margin:8px 0 20px;
+    .tagline{
+      margin:6px 0 8px;
       font-size:14px;
+      color:rgba(255,255,255,.78);
+      font-weight:650;
+    }
+
+    .subtitle{
+      margin:0 0 18px;
+      font-size:13px;
       color:var(--muted);
+      line-height:1.7;
     }
 
     .links{
       display:flex;
       flex-direction:column;
-      gap:14px;
+      gap:12px;
+      margin-top:10px;
     }
 
-    a.btn{
+    .btn{
+      appearance:none;
+      border:none;
+      width:100%;
+      cursor:pointer;
       text-decoration:none;
-      padding:16px;
-      border-radius:var(--radius);
-      background:var(--btn);
       color:var(--text);
-      font-weight:800;
+
+      padding:16px 16px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--btn1), var(--btn2));
+      border:1px solid rgba(255,255,255,.10);
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+
+      box-shadow:
+        0 10px 22px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.06);
+
+      transition: transform .13s ease, border-color .13s ease, background .13s ease;
+    }
+
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(247,201,72,.35);
+      background: linear-gradient(180deg, rgba(247,201,72,.10), rgba(255,255,255,.03));
+    }
+
+    .btn .left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
       font-size:16px;
-      border:1px solid rgba(255,255,255,.08);
-      transition:.15s;
-      box-shadow:0 6px 18px rgba(0,0,0,.35);
     }
 
-    a.btn:hover{
-      background:var(--btnHover);
-      color:#000;
-      transform:translateY(-2px);
+    .ico{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+      font-size:16px;
     }
 
-    footer{
-      margin-top:20px;
+    .chev{
+      opacity:.65;
+      font-size:18px;
+      margin-right:6px;
+    }
+
+    .footer{
+      margin-top:16px;
       font-size:12px;
-      color:var(--muted);
+      color:rgba(255,255,255,.55);
+    }
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.60);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:9999;
+    }
+    .modal-backdrop.show{ display:flex; }
+
+    .modal{
+      width:min(420px, 100%);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(15,22,35,.98), rgba(10,14,22,.92));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 30px 80px rgba(0,0,0,.65);
+      padding:18px;
+      text-align:right;
+      position:relative;
+      animation: pop .14s ease-out;
+    }
+    @keyframes pop{
+      from{ transform: scale(.98); opacity:.6 }
+      to{ transform: scale(1); opacity:1 }
+    }
+
+    .modal h3{
+      margin:0 0 6px;
+      font-size:18px;
+      font-weight:950;
+    }
+    .modal p{
+      margin:0 0 14px;
+      color:rgba(255,255,255,.70);
+      font-size:13px;
+      line-height:1.7;
+    }
+    .modal .close{
+      width:100%;
+      padding:12px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(247,201,72,.16), rgba(255,255,255,.03));
+      color:var(--text);
+      font-weight:900;
+      cursor:pointer;
+    }
+    .modal .x{
+      position:absolute;
+      top:10px;
+      left:10px;
+      width:36px;
+      height:36px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      cursor:pointer;
+      color: rgba(255,255,255,.75);
+      font-weight:900;
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
+    <div class="glow"></div>
 
-    <!-- Logo Placeholder -->
-    <div class="logo">🍯</div>
+    <div class="card">
 
-    <!-- Brand Name -->
-    <h1>بيوت النحل</h1>
-    <p>روابطنا الرسمية — سيتم تحديثها قريبًا</p>
+      <!-- LOGO: ضع logo.png داخل نفس الريبو وستظهر الصورة -->
+      <div class="logo" title="بيوت النحل">
+        <!-- لو رفعت صورة باسم logo.png راح تشتغل تلقائيًا -->
+        <img src="logo.png" alt="شعار بيوت النحل"
+             onerror="this.remove(); document.getElementById('logoFallback').style.display='block';">
+        <div id="logoFallback" class="logo-fallback" style="display:none;">🍯</div>
+      </div>
 
-    <!-- Buttons -->
-    <div class="links">
-      <a class="btn" href="#" target="_blank">🌍 الموقع الرسمي (قريبًا)</a>
-      <a class="btn" href="#" target="_blank">🛒 المتجر الإلكتروني</a>
-      <a class="btn" href="#" target="_blank">📷 إنستقرام</a>
-      <a class="btn" href="#" target="_blank">💬 واتساب للتواصل</a>
-      <a class="btn" href="#" target="_blank">📍 موقع المصنع</a>
+      <h1>بيوت النحل</h1>
+      <div class="tagline">للعسل الطبيعي</div>
+
+      <div class="subtitle">روابطنا الرسمية</div>
+
+      <div class="links">
+        <button class="btn" data-title="المتجر الإلكتروني">
+          <span class="left"><span class="ico">🛒</span> المتجر الإلكتروني</span>
+          <span class="chev">›</span>
+        </button>
+
+        <button class="btn" data-title="إنستقرام">
+          <span class="left"><span class="ico">📷</span> إنستقرام</span>
+          <span class="chev">›</span>
+        </button>
+
+        <button class="btn" data-title="تيك توك">
+          <span class="left"><span class="ico">🎵</span> تيك توك</span>
+          <span class="chev">›</span>
+        </button>
+
+        <button class="btn" data-title="للتواصل">
+          <span class="left"><span class="ico">💬</span> للتواصل</span>
+          <span class="chev">›</span>
+        </button>
+      </div>
+
+      <div class="footer">© <span id="y"></span> بيوت النحل</div>
     </div>
+  </div>
 
-    <footer>
-      © <span id="y"></span> بيوت النحل
-    </footer>
-
+  <!-- Modal -->
+  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <button class="x" id="modalX" aria-label="إغلاق">×</button>
+      <h3 id="mTitle">قريبًا</h3>
+      <p id="mDesc">هذه الخدمة ستكون متاحة قريبًا بإذن الله.</p>
+      <button class="close" id="modalClose">حسنًا</button>
+    </div>
   </div>
 
   <script>
+    // year
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // modal helpers
+    const backdrop = document.getElementById("modalBackdrop");
+    const mTitle = document.getElementById("mTitle");
+    const mDesc  = document.getElementById("mDesc");
+    const closeBtn = document.getElementById("modalClose");
+    const xBtn = document.getElementById("modalX");
+
+    function openModal(serviceTitle){
+      mTitle.textContent = "قريبًا";
+      mDesc.textContent = "ميزة \"" + serviceTitle + "\" ستكون متاحة قريبًا.";
+      backdrop.classList.add("show");
+      backdrop.setAttribute("aria-hidden", "false");
+    }
+    function closeModal(){
+      backdrop.classList.remove("show");
+      backdrop.setAttribute("aria-hidden", "true");
+    }
+
+    // attach click to all buttons
+    document.querySelectorAll(".btn").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        openModal(btn.getAttribute("data-title") || "هذه الخدمة");
+      });
+    });
+
+    // close interactions
+    closeBtn.addEventListener("click", closeModal);
+    xBtn.addEventListener("click", closeModal);
+    backdrop.addEventListener("click", (e)=>{
+      if(e.target === backdrop) closeModal();
+    });
+    document.addEventListener("keydown", (e)=>{
+      if(e.key === "Escape") closeModal();
+    });
   </script>
 </body>
 </html>
