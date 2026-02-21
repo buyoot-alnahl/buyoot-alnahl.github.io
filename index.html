@@ -124,6 +124,62 @@
       }
     }
 
+    /* قطرات عسل */
+    .honey-drip {
+      position: absolute;
+      top: -5px;
+      width: 8px;
+      height: 18px;
+      background: linear-gradient(180deg, var(--honey-light) 0%, var(--honey) 100%);
+      border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+      opacity: 0.7;
+      animation: drip 3s ease-in-out infinite;
+    }
+
+    .honey-drip:nth-child(1) { right: 15%; animation-delay: 0s; }
+    .honey-drip:nth-child(2) { right: 45%; animation-delay: 1s; }
+    .honey-drip:nth-child(3) { right: 75%; animation-delay: 2s; }
+
+    @keyframes drip {
+      0%, 100% {
+        transform: translateY(0) scaleY(1);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translateY(8px) scaleY(1.3);
+        opacity: 0.9;
+      }
+    }
+
+    /* شارة "الأكثر مبيعاً" للمتجر */
+    .badge-hot {
+      position: absolute;
+      top: -8px;
+      left: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+      font-size: 10px;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+      animation: badgePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* تأثير توهج للأزرار المهمة */
+    .btn-glow {
+      box-shadow: 0 0 20px rgba(245, 166, 35, 0.15);
+    }
+
+    .btn-glow:hover {
+      box-shadow: 0 10px 40px rgba(245, 166, 35, 0.25);
+    }
+
     .wrap {
       width: min(480px, 100%);
       position: relative;
@@ -441,6 +497,7 @@
     .btn-icon .fa-x-twitter { color: #fff; }
     .btn-icon .fa-tiktok { color: #00F2EA; }
     .btn-icon .fa-whatsapp { color: #25D366; }
+    .btn-icon .fa-envelope { color: #F5A623; }
 
     .btn-text {
       font-family: "Tajawal", sans-serif;
@@ -500,6 +557,13 @@
     .footer-text {
       font-size: 12px;
       color: var(--muted);
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--honey-light);
+      margin-bottom: 8px;
     }
 
     .footer-honey {
@@ -695,7 +759,13 @@
       </div>
 
       <div class="links">
-        <button class="btn" data-title="المتجر الإلكتروني">
+        <!-- قطرات العسل -->
+        <div class="honey-drip"></div>
+        <div class="honey-drip"></div>
+        <div class="honey-drip"></div>
+
+        <button class="btn btn-glow" data-title="المتجر الإلكتروني" style="position: relative;">
+          <span class="badge-hot">🔥 الأكثر طلباً</span>
           <span class="btn-content">
             <span class="btn-icon"><i class="fa-solid fa-cart-shopping"></i></span>
             <span class="btn-text">المتجر الإلكتروني</span>
@@ -719,14 +789,6 @@
           <span class="btn-arrow">‹</span>
         </button>
 
-        <button class="btn" data-title="تويتر">
-          <span class="btn-content">
-            <span class="btn-icon"><i class="fa-brands fa-x-twitter"></i></span>
-            <span class="btn-text">تويتر (إكس)</span>
-          </span>
-          <span class="btn-arrow">‹</span>
-        </button>
-
         <button class="btn" data-title="تيك توك">
           <span class="btn-content">
             <span class="btn-icon"><i class="fa-brands fa-tiktok"></i></span>
@@ -741,7 +803,15 @@
       </div>
 
       <div class="links" style="margin-top: 0;">
-        <button class="btn" data-title="واتساب" style="animation-delay: 0.8s;">
+        <button class="btn" data-title="البريد الإلكتروني" style="animation-delay: 0.8s;">
+          <span class="btn-content">
+            <span class="btn-icon"><i class="fa-solid fa-envelope"></i></span>
+            <span class="btn-text">البريد الإلكتروني</span>
+          </span>
+          <span class="btn-arrow">‹</span>
+        </button>
+
+        <button class="btn" data-title="واتساب" style="animation-delay: 0.85s;">
           <span class="btn-content">
             <span class="btn-icon"><i class="fa-brands fa-whatsapp"></i></span>
             <span class="btn-text">واتساب</span>
@@ -751,6 +821,7 @@
       </div>
 
       <div class="footer">
+        <p class="footer-tagline">نوصل لكم أجود أنواع العسل الطبيعي 🐝</p>
         <p class="footer-text">© <span id="year"></span> بيوت النحل - جميع الحقوق محفوظة</p>
         <p class="footer-honey">
           <span>🍯</span>
