@@ -124,60 +124,53 @@
       }
     }
 
-    /* قطرات عسل */
-    .honey-drip {
+    /* تأثير نبض للأيقونات عند الـ hover */
+    .btn:hover .btn-icon i {
+      animation: iconPop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    @keyframes iconPop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1.1); }
+    }
+
+    /* تأثير لمعة على الزر */
+    .btn::after {
+      content: "";
       position: absolute;
-      top: -5px;
-      width: 8px;
-      height: 18px;
-      background: linear-gradient(180deg, var(--honey-light) 0%, var(--honey) 100%);
-      border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
-      opacity: 0.7;
-      animation: drip 3s ease-in-out infinite;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s ease;
+      pointer-events: none;
     }
 
-    .honey-drip:nth-child(1) { right: 15%; animation-delay: 0s; }
-    .honey-drip:nth-child(2) { right: 45%; animation-delay: 1s; }
-    .honey-drip:nth-child(3) { right: 75%; animation-delay: 2s; }
-
-    @keyframes drip {
-      0%, 100% {
-        transform: translateY(0) scaleY(1);
-        opacity: 0.7;
-      }
-      50% {
-        transform: translateY(8px) scaleY(1.3);
-        opacity: 0.9;
-      }
+    .btn:hover::after {
+      left: 100%;
     }
 
-    /* شارة "الأكثر مبيعاً" للمتجر */
-    .badge-hot {
+    /* تأثير ضغط محسّن للموبايل */
+    .btn:active {
+      transform: scale(0.96);
+      transition: transform 0.1s ease;
+    }
+
+    /* تأثير توهج خفيف حول الشعار */
+    .logo-glow {
       position: absolute;
-      top: -8px;
-      left: 12px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-      font-size: 10px;
-      font-weight: 800;
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
-      animation: badgePulse 2s ease-in-out infinite;
+      inset: -20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 166, 35, 0.2) 0%, transparent 70%);
+      animation: logoGlow 3s ease-in-out infinite alternate;
+      pointer-events: none;
     }
 
-    @keyframes badgePulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    /* تأثير توهج للأزرار المهمة */
-    .btn-glow {
-      box-shadow: 0 0 20px rgba(245, 166, 35, 0.15);
-    }
-
-    .btn-glow:hover {
-      box-shadow: 0 10px 40px rgba(245, 166, 35, 0.25);
+    @keyframes logoGlow {
+      0% { opacity: 0.5; transform: scale(1); }
+      100% { opacity: 0.8; transform: scale(1.1); }
     }
 
     .wrap {
@@ -341,16 +334,15 @@
     .title-main {
       font-family: "Readex Pro", "Tajawal", sans-serif;
       font-weight: 700;
-      font-size: 42px;
-      line-height: 1.1;
+      font-size: 44px;
+      line-height: 1.3;
       margin: 0;
+      padding-bottom: 4px;
       
       background: linear-gradient(180deg, #FFE4A0 0%, var(--honey-light) 40%, var(--honey) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      
-      text-shadow: 0 0 60px rgba(245, 166, 35, 0.4);
     }
 
     .title-sub {
@@ -443,10 +435,20 @@
     }
 
     .btn:hover {
-      transform: translateY(-2px) scale(1.01);
-      border-color: rgba(255, 193, 7, 0.3);
+      transform: translateY(-3px);
+      border-color: rgba(255, 193, 7, 0.35);
       background: var(--btn-hover);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 193, 7, 0.1);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35), 0 0 25px rgba(255, 193, 7, 0.12);
+    }
+
+    /* تعطيل hover على الموبايل لأنه مو محتاج */
+    @media (hover: none) {
+      .btn:hover {
+        transform: none;
+        border-color: var(--btn-border);
+        background: var(--btn-bg);
+        box-shadow: none;
+      }
     }
 
     .btn:hover::before {
@@ -688,24 +690,33 @@
       color: var(--text);
     }
 
-    /* Responsive */
+    /* Responsive - تحسينات الموبايل */
     @media (max-width: 420px) {
+      body {
+        padding: 16px 12px;
+      }
+      
       .card {
-        padding: 28px 18px 20px;
-        border-radius: 28px;
+        padding: 24px 16px 20px;
+        border-radius: 26px;
       }
       
       .logo-container {
-        width: 110px;
-        height: 110px;
+        width: 105px;
+        height: 105px;
       }
       
       .title-main {
-        font-size: 34px;
+        font-size: 36px;
       }
       
       .title-sub {
-        font-size: 15px;
+        font-size: 14px;
+      }
+      
+      .official-badge {
+        font-size: 12px;
+        padding: 6px 14px;
       }
       
       .btn {
@@ -713,12 +724,33 @@
       }
       
       .btn-icon {
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+      }
+      
+      .btn-icon i {
+        font-size: 17px;
       }
       
       .btn-text {
-        font-size: 15px;
+        font-size: 14px;
+      }
+      
+      .section-divider span {
+        font-size: 12px;
+      }
+    }
+
+    /* شاشات صغيرة جداً */
+    @media (max-width: 350px) {
+      .title-main {
+        font-size: 32px;
+      }
+      
+      .logo-container {
+        width: 95px;
+        height: 95px;
       }
     }
   </style>
@@ -740,6 +772,7 @@
       <div class="header">
         <!-- الشعار مع الحلقة -->
         <div class="logo-container">
+          <div class="logo-glow"></div>
           <div class="logo-ring"></div>
           <div class="logo">
             <img src="logo_mark.png" alt="بيوت النحل">
@@ -749,7 +782,7 @@
 
         <div class="title-block">
           <h1 class="title-main">بيوت النحل</h1>
-          <p class="title-sub">للعسل الطبيعي الصافي</p>
+          <p class="title-sub">للعسل الطبيعي</p>
         </div>
 
         <div class="official-badge">
@@ -759,13 +792,7 @@
       </div>
 
       <div class="links">
-        <!-- قطرات العسل -->
-        <div class="honey-drip"></div>
-        <div class="honey-drip"></div>
-        <div class="honey-drip"></div>
-
-        <button class="btn btn-glow" data-title="المتجر الإلكتروني" style="position: relative;">
-          <span class="badge-hot">🔥 الأكثر طلباً</span>
+        <button class="btn" data-title="المتجر الإلكتروني">
           <span class="btn-content">
             <span class="btn-icon"><i class="fa-solid fa-cart-shopping"></i></span>
             <span class="btn-text">المتجر الإلكتروني</span>
