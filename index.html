@@ -287,6 +287,14 @@
       box-shadow:
         0 15px 40px rgba(0, 0, 0, 0.4),
         0 0 30px rgba(245, 166, 35, 0.2);
+      
+      animation: logoSpin 6s ease-in-out infinite;
+    }
+
+    @keyframes logoSpin {
+      0% { transform: rotate(0deg); }
+      15% { transform: rotate(360deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .logo img {
