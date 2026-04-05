@@ -1,1057 +1,201 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="robots" content="noindex" />
-  <title>بيوت النحل - روابط</title>
-
-  <!-- Arabic fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Readex+Pro:wght@600;700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <style>
-    :root {
-      --bg: #0a0c10;
-      --card-bg: rgba(18, 22, 30, 0.95);
-      --card-border: rgba(255, 200, 87, 0.12);
-
-      --text: #f8f9fc;
-      --muted: rgba(255, 255, 255, 0.6);
-
-      /* ألوان العسل والذهب */
-      --honey-dark: #8B5A00;
-      --honey: #C4841D;
-      --honey-light: #F5A623;
-      --gold: #FFD700;
-      --gold-glow: rgba(255, 193, 7, 0.4);
-
-      --btn-bg: rgba(255, 255, 255, 0.04);
-      --btn-hover: rgba(255, 193, 7, 0.08);
-      --btn-border: rgba(255, 255, 255, 0.08);
-
-      --radius: 20px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Tajawal", system-ui, sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px 16px;
-      overflow-x: hidden;
-      background: var(--bg);
-      position: relative;
-    }
-
-    /* خلفية متحركة */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 800px 600px at 20% 10%, rgba(245, 166, 35, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse 600px 500px at 80% 20%, rgba(196, 132, 29, 0.12) 0%, transparent 50%),
-        radial-gradient(ellipse 900px 400px at 50% 100%, rgba(139, 90, 0, 0.18) 0%, transparent 50%);
-      pointer-events: none;
-      animation: bgPulse 8s ease-in-out infinite alternate;
-    }
-
-    @keyframes bgPulse {
-      0% { opacity: 0.8; }
-      100% { opacity: 1; }
-    }
-
-    /* جزيئات عسل متحركة */
-    .honey-particles {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .particle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: radial-gradient(circle, var(--honey-light) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: floatParticle 15s infinite ease-in-out;
-      opacity: 0.3;
-    }
-
-    .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 18s; }
-    .particle:nth-child(2) { left: 25%; animation-delay: 2s; animation-duration: 14s; }
-    .particle:nth-child(3) { left: 40%; animation-delay: 4s; animation-duration: 20s; }
-    .particle:nth-child(4) { left: 55%; animation-delay: 1s; animation-duration: 16s; }
-    .particle:nth-child(5) { left: 70%; animation-delay: 3s; animation-duration: 19s; }
-    .particle:nth-child(6) { left: 85%; animation-delay: 5s; animation-duration: 15s; }
-
-    @keyframes floatParticle {
-      0%, 100% {
-        transform: translateY(100vh) scale(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.4;
-        transform: translateY(80vh) scale(1);
-      }
-      90% {
-        opacity: 0.4;
-        transform: translateY(10vh) scale(1);
-      }
-      100% {
-        transform: translateY(-10vh) scale(0);
-        opacity: 0;
-      }
-    }
-
-    /* تأثير نبض للأيقونات عند الـ hover */
-    .btn:hover .btn-icon i {
-      animation: iconPop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    }
-
-    @keyframes iconPop {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-      100% { transform: scale(1.1); }
-    }
-
-    /* تأثير لمعة على الزر */
-    .btn::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transition: left 0.6s ease;
-      pointer-events: none;
-    }
-
-    .btn:hover::after {
-      left: 100%;
-    }
-
-    .btn:active {
-      transform: scale(0.96);
-      transition: transform 0.1s ease;
-    }
-
-    .logo-glow {
-      position: absolute;
-      inset: -20px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(245, 166, 35, 0.2) 0%, transparent 70%);
-      animation: logoGlow 3s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-
-    @keyframes logoGlow {
-      0% { opacity: 0.5; transform: scale(1); }
-      100% { opacity: 0.8; transform: scale(1.1); }
-    }
-
-    .wrap {
-      width: min(480px, 100%);
-      position: relative;
-      z-index: 1;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 32px;
-      padding: 32px 24px 24px;
-      backdrop-filter: blur(20px);
-      position: relative;
-      overflow: visible;
-      box-shadow:
-        0 25px 80px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(255, 255, 255, 0.05) inset,
-        0 1px 0 rgba(255, 255, 255, 0.1) inset;
-      animation: cardEntry 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    @keyframes cardEntry {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--honey-light), transparent);
-      opacity: 0.6;
-    }
-
-    .card::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
-      opacity: 0.3;
-      pointer-events: none;
-    }
-
-    .header {
-      position: relative;
-      text-align: center;
-      z-index: 1;
-    }
-
-    .logo-container {
-      position: relative;
-      width: 130px;
-      height: 130px;
-      margin: 0 auto 20px;
-      animation: logoEntry 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-      opacity: 0;
-      transform: scale(0.8);
-    }
-
-    @keyframes logoEntry {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .logo-ring {
-      position: absolute;
-      inset: -8px;
-      border-radius: 50%;
-      border: 2px solid transparent;
-      background: linear-gradient(135deg, var(--honey-light) 0%, var(--honey-dark) 50%, var(--honey-light) 100%) border-box;
-      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: ringRotate 10s linear infinite;
-    }
-
-    @keyframes ringRotate {
-      to { transform: rotate(360deg); }
-    }
-
-    .logo {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: #FAF6F0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-      position: relative;
-      box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.4),
-        0 0 30px rgba(245, 166, 35, 0.2);
-      animation: logoSpin 6s ease-in-out infinite;
-    }
-
-    @keyframes logoSpin {
-      0% { transform: rotate(0deg); }
-      15% { transform: rotate(360deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .bee {
-      position: absolute;
-      font-size: 22px;
-      animation: beeFly 6s ease-in-out infinite;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-    }
-
-    @keyframes beeFly {
-      0%, 100% { transform: translate(0, 0) rotate(-5deg); }
-      25% { transform: translate(15px, -20px) rotate(5deg); }
-      50% { transform: translate(-10px, -35px) rotate(-5deg); }
-      75% { transform: translate(-20px, -15px) rotate(5deg); }
-    }
-
-    .title-block {
-      animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .title-main {
-      font-family: "Readex Pro", "Tajawal", sans-serif;
-      font-weight: 700;
-      font-size: 44px;
-      line-height: 1.3;
-      margin: 0;
-      padding-bottom: 4px;
-      background: linear-gradient(180deg, #FFE4A0 0%, var(--honey-light) 40%, var(--honey) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .title-sub {
-      font-size: 17px;
-      font-weight: 500;
-      margin-top: 6px;
-      color: var(--muted);
-      letter-spacing: 0.5px;
-    }
-
-    .official-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 20px;
-      padding: 8px 16px;
-      border-radius: 100px;
-      background: rgba(255, 193, 7, 0.1);
-      border: 1px solid rgba(255, 193, 7, 0.2);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--honey-light);
-      animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
-      opacity: 0;
-    }
-
-    .official-badge i {
-      font-size: 11px;
-    }
-
-    .links {
-      margin-top: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .btn {
-      width: 100%;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      padding: 14px 18px;
-      border-radius: var(--radius);
-      background: var(--btn-bg);
-      border: 1px solid var(--btn-border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      animation: btnEntry 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-
-    .btn:nth-child(1) { animation-delay: 0.45s; }
-    .btn:nth-child(2) { animation-delay: 0.5s; }
-    .btn:nth-child(3) { animation-delay: 0.55s; }
-    .btn:nth-child(4) { animation-delay: 0.6s; }
-    .btn:nth-child(5) { animation-delay: 0.65s; }
-    .btn:nth-child(6) { animation-delay: 0.7s; }
-
-    @keyframes btnEntry {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    .btn::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.1), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.5s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      border-color: rgba(255, 193, 7, 0.35);
-      background: var(--btn-hover);
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35), 0 0 25px rgba(255, 193, 7, 0.12);
-    }
-
-    @media (hover: none) {
-      .btn:hover {
-        transform: none;
-        border-color: var(--btn-border);
-        background: var(--btn-bg);
-        box-shadow: none;
-      }
-    }
-
-    .btn:hover::before {
-      transform: translateX(100%);
-    }
-
-    .btn:active {
-      transform: translateY(0) scale(0.99);
-    }
-
-    .btn-content {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .btn-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.25s ease;
-      flex-shrink: 0;
-    }
-
-    .btn:hover .btn-icon {
-      transform: scale(1.05);
-    }
-
-    .btn-icon i {
-      font-size: 20px;
-      transition: transform 0.3s ease;
-    }
-
-    .btn:hover .btn-icon i {
-      transform: scale(1.1);
-    }
-
-    .btn-link {
-      display: flex;
-    }
-
-    .btn-icon .fa-cart-shopping { color: var(--honey-light); }
-    .btn-icon .fa-instagram { color: #E1306C; }
-    .btn-icon .fa-snapchat { color: #FFFC00; }
-    .btn-icon .fa-x-twitter { color: #fff; }
-    .btn-icon .fa-tiktok { color: #00F2EA; }
-    .btn-icon .fa-whatsapp { color: #25D366; }
-    .btn-icon .fa-envelope { color: #F5A623; }
-
-    .btn-text {
-      font-family: "Tajawal", sans-serif;
-      font-weight: 700;
-      font-size: 16px;
-      color: var(--text);
-    }
-
-    .btn-arrow {
-      font-size: 18px;
-      color: var(--muted);
-      transition: all 0.25s ease;
-    }
-
-    .btn:hover .btn-arrow {
-      color: var(--honey-light);
-      transform: translateX(-4px);
-    }
-
-    /* TikTok */
-    .tiktok-btn {
-      background:
-        linear-gradient(180deg, rgba(0, 242, 234, 0.08), rgba(255, 0, 80, 0.04)),
-        var(--btn-bg);
-      border-color: rgba(255, 255, 255, 0.12);
-    }
-
-    .tiktok-btn:hover {
-      border-color: rgba(0, 242, 234, 0.28);
-      box-shadow:
-        0 12px 35px rgba(0, 0, 0, 0.35),
-        0 0 25px rgba(0, 242, 234, 0.10);
-    }
-
-    /* Instagram */
-    .instagram-btn {
-      background:
-        linear-gradient(180deg, rgba(225, 48, 108, 0.08), rgba(245, 166, 35, 0.04)),
-        var(--btn-bg);
-      border-color: rgba(225, 48, 108, 0.16);
-    }
-
-    .instagram-btn:hover {
-      border-color: rgba(225, 48, 108, 0.30);
-      box-shadow:
-        0 12px 35px rgba(0, 0, 0, 0.35),
-        0 0 25px rgba(225, 48, 108, 0.10);
-    }
-
-    /* Email */
-    .email-btn {
-      background:
-        linear-gradient(180deg, rgba(245, 166, 35, 0.08), rgba(196, 132, 29, 0.04)),
-        var(--btn-bg);
-      border-color: rgba(245, 166, 35, 0.16);
-    }
-
-    .email-btn:hover {
-      border-color: rgba(245, 166, 35, 0.32);
-      box-shadow:
-        0 12px 35px rgba(0, 0, 0, 0.35),
-        0 0 25px rgba(245, 166, 35, 0.10);
-    }
-
-    /* Snapchat */
-    .snap-wrap {
-      position: relative;
-      animation: btnEntry 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 0.6s;
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-
-    .snap-wrap .btn {
-      animation: none;
-      opacity: 1;
-      transform: none;
-    }
-
-    .snapchat-btn {
-      background:
-        linear-gradient(180deg, rgba(255, 252, 0, 0.08), rgba(255, 252, 0, 0.03)),
-        var(--btn-bg);
-      border-color: rgba(255, 252, 0, 0.18);
-    }
-
-    .snapchat-btn:hover {
-      border-color: rgba(255, 252, 0, 0.35);
-      box-shadow:
-        0 12px 35px rgba(0, 0, 0, 0.35),
-        0 0 25px rgba(255, 252, 0, 0.10);
-    }
-
-    .snap-hover-card {
-      position: absolute;
-      top: 50%;
-      left: calc(100% + 18px);
-      transform: translateY(-50%) translateX(8px);
-      width: 220px;
-      padding: 12px;
-      border-radius: 22px;
-      background: rgba(20, 24, 32, 0.96);
-      border: 1px solid rgba(255, 252, 0, 0.16);
-      box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.45),
-        0 0 22px rgba(255, 252, 0, 0.08);
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition:
-        opacity 0.25s ease,
-        transform 0.25s ease,
-        visibility 0.25s ease;
-      z-index: 20;
-    }
-
-    .snap-hover-card::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      right: 100%;
-      transform: translateY(-50%);
-      border-width: 10px;
-      border-style: solid;
-      border-color: transparent rgba(255, 252, 0, 0.12) transparent transparent;
-    }
-
-    .snap-hover-img {
-      width: 100%;
-      display: block;
-      border-radius: 16px;
-      background: #fff;
-      padding: 8px;
-    }
-
-    .snap-hover-caption {
-      display: block;
-      margin-top: 10px;
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      .snap-wrap:hover .snap-hover-card {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(-50%) translateX(0);
-      }
-    }
-
-    @media (hover: none), (pointer: coarse), (max-width: 900px) {
-      .snap-hover-card {
-        display: none !important;
-      }
-    }
-
-    .section-divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 24px 0 16px;
-      animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
-      opacity: 0;
-    }
-
-    .section-divider span {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .section-divider::before,
-    .section-divider::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    }
-
-    .footer {
-      margin-top: 28px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.85s forwards;
-      opacity: 0;
-    }
-
-    .footer-text {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .footer-tagline {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--honey-light);
-      margin-bottom: 8px;
-    }
-
-    .footer-honey {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 8px;
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.4);
-    }
-
-    .footer-honey span {
-      font-size: 14px;
-    }
-
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(8px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 9999;
-    }
-
-    .modal-backdrop.show {
-      display: flex;
-    }
-
-    .modal {
-      width: min(400px, 100%);
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(25, 30, 40, 0.98), rgba(15, 18, 25, 0.98));
-      border: 1px solid rgba(255, 193, 7, 0.15);
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 60px rgba(245, 166, 35, 0.1);
-      padding: 28px 24px;
-      text-align: center;
-      position: relative;
-      animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes modalPop {
-      from {
-        transform: scale(0.9);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .modal-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 16px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--honey) 0%, var(--honey-dark) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-    }
-
-    .modal h3 {
-      margin: 0 0 8px;
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--text);
-    }
-
-    .modal p {
-      margin: 0 0 24px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .modal-close {
-      width: 100%;
-      padding: 14px 20px;
-      border-radius: 16px;
-      border: none;
-      background: linear-gradient(135deg, var(--honey) 0%, var(--honey-dark) 100%);
-      color: #fff;
-      font-family: "Tajawal", sans-serif;
-      font-weight: 800;
-      font-size: 15px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .modal-close:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 25px rgba(196, 132, 29, 0.4);
-    }
-
-    .modal-x {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.05);
-      cursor: pointer;
-      color: var(--muted);
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-    }
-
-    .modal-x:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--text);
-    }
-
-    @media (max-width: 420px) {
-      body {
-        padding: 16px 12px;
-      }
-
-      .card {
-        padding: 24px 16px 20px;
-        border-radius: 26px;
-      }
-
-      .logo-container {
-        width: 105px;
-        height: 105px;
-      }
-
-      .title-main {
-        font-size: 36px;
-      }
-
-      .title-sub {
-        font-size: 14px;
-      }
-
-      .official-badge {
-        font-size: 12px;
-        padding: 6px 14px;
-      }
-
-      .btn {
-        padding: 12px 14px;
-      }
-
-      .btn-icon {
-        width: 38px;
-        height: 38px;
-        border-radius: 12px;
-      }
-
-      .btn-icon i {
-        font-size: 17px;
-      }
-
-      .btn-text {
-        font-size: 14px;
-      }
-
-      .section-divider span {
-        font-size: 12px;
-      }
-    }
-
-    @media (max-width: 350px) {
-      .title-main {
-        font-size: 32px;
-      }
-
-      .logo-container {
-        width: 95px;
-        height: 95px;
-      }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>بيوت النحل</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body{
+  font-family:Tajawal;
+  background:#0a0c10;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+.wrap{width:400px}
+
+.links{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+
+.btn{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px;
+  border-radius:16px;
+  text-decoration:none;
+  color:#fff;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  cursor:pointer;
+}
+
+.btn-content{display:flex;gap:12px;align-items:center}
+
+.btn-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:#0003;border-radius:12px}
+
+.btn-icon i{font-size:20px}
+
+.btn-arrow{opacity:.6}
+
+/* TikTok */
+.tiktok-btn{background:linear-gradient(#00f2ea20,#ff005020)}
+/* Instagram */
+.instagram-btn{background:linear-gradient(#e1306c20,#f5a62310)}
+/* Email */
+.email-btn{background:linear-gradient(#f5a62320,#c4841d10)}
+
+/* SNAP */
+.snap-wrap{position:relative}
+
+.snap-hover-card{
+  position:absolute;
+  left:100%;
+  top:50%;
+  transform:translateY(-50%);
+  width:200px;
+  background:#111;
+  padding:10px;
+  border-radius:16px;
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
+}
+
+.snap-hover-img{width:100%;border-radius:12px;background:#fff;padding:5px}
+
+.snap-wrap:hover .snap-hover-card{
+  opacity:1;
+  visibility:visible;
+}
+
+/* hide on mobile */
+@media (hover:none){
+  .snap-hover-card{display:none}
+}
+
+/* toast */
+.copy-toast{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#111;
+  padding:10px 20px;
+  border-radius:12px;
+  opacity:0;
+  transition:.3s;
+}
+
+.copy-toast.show{opacity:1}
+</style>
 </head>
 
 <body>
-  <div class="honey-particles">
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-  </div>
 
-  <div class="wrap">
-    <div class="card">
-      <div class="header">
-        <div class="logo-container">
-          <div class="logo-glow"></div>
-          <div class="logo-ring"></div>
-          <div class="logo">
-            <img src="logo_mark.png" alt="بيوت النحل">
-          </div>
-          <span class="bee">🐝</span>
-        </div>
+<div class="wrap">
 
-        <div class="title-block">
-          <h1 class="title-main">بيوت النحل</h1>
-          <p class="title-sub">للعسل الطبيعي</p>
-        </div>
+<h2>🍯 بيوت النحل</h2>
 
-        <div class="official-badge">
-          <i class="fa-solid fa-certificate"></i>
-          روابطنا الرسمية
-        </div>
-      </div>
+<div class="links">
 
-      <div class="links">
-        <button class="btn" data-title="المتجر الإلكتروني">
-          <span class="btn-content">
-            <span class="btn-icon"><i class="fa-solid fa-cart-shopping"></i></span>
-            <span class="btn-text">المتجر الإلكتروني</span>
-          </span>
-          <span class="btn-arrow">‹</span>
-        </button>
+<!-- متجر -->
+<button class="btn">
+  <span class="btn-content">
+    <span class="btn-icon"><i class="fa fa-store"></i></span>
+    <span>المتجر الإلكتروني</span>
+  </span>
+</button>
 
-        <a class="btn btn-link tiktok-btn"
-           href="https://www.tiktok.com/@buyoot_alnahl"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="زيارة حساب بيوت النحل على تيك توك">
-          <span class="btn-content">
-            <span class="btn-icon"><i class="fa-brands fa-tiktok"></i></span>
-            <span class="btn-text">تابعنا على تيك توك</span>
-          </span>
-          <span class="btn-arrow">‹</span>
-        </a>
+<!-- TikTok -->
+<a class="btn tiktok-btn"
+href="https://www.tiktok.com/@buyoot_alnahl" target="_blank">
+<span class="btn-content">
+<span class="btn-icon"><i class="fa-brands fa-tiktok"></i></span>
+<span>تابعنا على تيك توك</span>
+</span>
+</a>
 
-        <a class="btn btn-link instagram-btn"
-           href="https://www.instagram.com/buyoot_alnahl/"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="زيارة حساب بيوت النحل على إنستقرام">
-          <span class="btn-content">
-            <span class="btn-icon"><i class="fa-brands fa-instagram"></i></span>
-            <span class="btn-text">تابعنا على إنستقرام</span>
-          </span>
-          <span class="btn-arrow">‹</span>
-        </a>
+<!-- Instagram -->
+<a class="btn instagram-btn"
+href="https://www.instagram.com/buyoot_alnahl/" target="_blank">
+<span class="btn-content">
+<span class="btn-icon"><i class="fa-brands fa-instagram"></i></span>
+<span>تابعنا على إنستقرام</span>
+</span>
+</a>
 
-        <div class="snap-wrap">
-          <a class="btn btn-link snapchat-btn"
-             href="https://www.snapchat.com/add/buyoot_alnahl"
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-label="زيارة حساب بيوت النحل على سناب شات">
-            <span class="btn-content">
-              <span class="btn-icon"><i class="fa-brands fa-snapchat"></i></span>
-              <span class="btn-text">تابعنا على سناب</span>
-            </span>
-            <span class="btn-arrow">‹</span>
-          </a>
+<!-- Snapchat -->
+<div class="snap-wrap">
+<a class="btn"
+href="https://www.snapchat.com/add/buyoot_alnahl" target="_blank">
+<span class="btn-content">
+<span class="btn-icon"><i class="fa-brands fa-snapchat"></i></span>
+<span>تابعنا على سناب</span>
+</span>
+</a>
 
-          <div class="snap-hover-card" aria-hidden="true">
-            <img src="snapcode.png" alt="Snapcode بيوت النحل" class="snap-hover-img">
-            <span class="snap-hover-caption">امسح الكود لزيارة حسابنا على سناب</span>
-          </div>
-        </div>
-      </div>
+<div class="snap-hover-card">
+<img src="snapcode.png" class="snap-hover-img">
+</div>
+</div>
 
-      <div class="section-divider">
-        <span>تواصل مباشر</span>
-      </div>
+<!-- Email -->
+<a class="btn email-btn"
+href="mailto:afhoney@wafamc.com"
+id="emailBtn"
+data-email="afhoney@wafamc.com">
 
-      <div class="links" style="margin-top: 0;">
-        <a class="btn btn-link email-btn"
-           href="mailto:afhoney@wafamc.com"
-           aria-label="إرسال بريد إلى بيوت النحل">
-          <span class="btn-content">
-            <span class="btn-icon"><i class="fa-solid fa-envelope"></i></span>
-            <span class="btn-text">راسلنا عبر البريد</span>
-          </span>
-          <span class="btn-arrow">‹</span>
-        </a>
+<span class="btn-content">
+<span class="btn-icon"><i class="fa fa-envelope"></i></span>
+<span>راسلنا عبر البريد</span>
+</span>
+</a>
 
-        <button class="btn" data-title="واتساب" style="animation-delay: 0.85s;">
-          <span class="btn-content">
-            <span class="btn-icon"><i class="fa-brands fa-whatsapp"></i></span>
-            <span class="btn-text">واتساب</span>
-          </span>
-          <span class="btn-arrow">‹</span>
-        </button>
-      </div>
+<!-- WhatsApp -->
+<button class="btn">
+<span class="btn-content">
+<span class="btn-icon"><i class="fa-brands fa-whatsapp"></i></span>
+<span>واتساب</span>
+</span>
+</button>
 
-      <div class="footer">
-        <p class="footer-tagline">نوصل لكم أجود أنواع العسل الطبيعي 🐝</p>
-        <p class="footer-text">© <span id="year"></span> بيوت النحل - جميع الحقوق محفوظة</p>
-        <p class="footer-honey">
-          <span>🍯</span>
-          عسل طبيعي 100%
-        </p>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
 
-  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true">
-      <button class="modal-x" id="modalX" aria-label="إغلاق">×</button>
-      <div class="modal-icon">🍯</div>
-      <h3>قريبًا</h3>
-      <p id="modalDesc">هذه الخدمة ستكون متاحة قريبًا.</p>
-      <button class="modal-close" id="modalClose">حسنًا</button>
-    </div>
-  </div>
+<!-- toast -->
+<div id="copyToast" class="copy-toast">تم النسخ</div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+<script>
 
-    const backdrop = document.getElementById("modalBackdrop");
-    const modalDesc = document.getElementById("modalDesc");
-    const closeBtn = document.getElementById("modalClose");
-    const xBtn = document.getElementById("modalX");
+const emailBtn = document.getElementById("emailBtn");
+const toast = document.getElementById("copyToast");
 
-    function openModal(serviceTitle) {
-      modalDesc.textContent = `صفحة "${serviceTitle}" ستكون متاحة قريبًا إن شاء الله.`;
-      backdrop.classList.add("show");
-      backdrop.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-    }
+emailBtn.addEventListener("click", async (e)=>{
 
-    function closeModal() {
-      backdrop.classList.remove("show");
-      backdrop.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-    }
+const isTouch = window.matchMedia("(hover:none)").matches;
 
-    document.querySelectorAll(".btn").forEach(btn => {
-      if (btn.classList.contains("btn-link")) return;
+if(isTouch) return;
 
-      btn.addEventListener("click", () => {
-        openModal(btn.getAttribute("data-title") || "هذه الخدمة");
-      });
-    });
+e.preventDefault();
 
-    closeBtn.addEventListener("click", closeModal);
-    xBtn.addEventListener("click", closeModal);
-    backdrop.addEventListener("click", (e) => {
-      if (e.target === backdrop) closeModal();
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
-    });
+await navigator.clipboard.writeText(emailBtn.dataset.email);
 
-    const bee = document.querySelector(".bee");
-    let angle = 0;
+toast.classList.add("show");
 
-    function moveBee() {
-      angle += 0.02;
-      const radius = 75;
-      const x = Math.cos(angle) * radius;
-      const y = Math.sin(angle) * radius * 0.5;
-      const rotation = Math.sin(angle * 2) * 15;
+setTimeout(()=>{
+toast.classList.remove("show");
+},2000);
 
-      bee.style.transform = `translate(${x}px, ${y - 20}px) rotate(${rotation}deg)`;
-      requestAnimationFrame(moveBee);
-    }
+});
 
-    moveBee();
-  </script>
+</script>
+
 </body>
 </html>
